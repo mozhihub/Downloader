@@ -1,324 +1,147 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
- <title>Downloader</title>
- <link rel="icon"href="Etc/download.png" type="image/x-icon"/>
- <meta charset='UTF-8' />
- <meta content='width=device-width, user-scalable=no' name='viewport' />
- <meta charset='utf-8' content='text/html' http-equiv='content-type' />
- <meta content='Etc/download.png' property='og:image' />
- <link href='Etc/download.png' rel='shortcut icon' type='image/vnd.microsoft.icon' />
- <link href='Etc/download.png' rel='apple-touch-icon' />
- <link crossorigin='anonymous' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css' integrity='sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==' referrerpolicy='no-referrer' rel='stylesheet' />
- <link href='css/main.css' media='all' rel='stylesheet' type='text/css' />
- <script charset='utf-8' src='js/popup.js' type='text/javascript'></script>
- <script charset='utf-8' src='js/share.js' type='text/javascript'></script>
- <title>All in one Video Downloader</title>
- <meta charset='UTF-8' />
- <meta content='width=device-width, user-scalable=no' name='viewport' />
- <link href='as.webmanifest' rel='manifest' />
- <style id='page-skin-1' type='text/css'>
-  <!--
-  *{box-sizing: border-box;}
-  body{margin:0;}
-  #cont{padding:10px;}
-  .mb5{
-  margin-bottom:10px;
-  margin-top:13px;
-  margin-left:5px;
-  margin-right:5px;
-  }
-  
-  -->
- </style>
- <meta name='google-adsense-platform-account' content='ca-host-pub-1556223355139109' />
- <meta name='google-adsense-platform-domain' content='infolite.com' />
-
- <script type="text/javascript" language="javascript">
-  // Supply ads personalization default for EEA readers
-  // See https://www.blogger.com/go/adspersonalization
-  adsbygoogle = window.adsbygoogle || [];
-  if (typeof adsbygoogle.requestNonPersonalizedAds === 'undefined') {
-    adsbygoogle.requestNonPersonalizedAds = 1;
-  }
- </script>
-
-
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b0d12"><meta name="description" content="Modern all-in-one video downloader">
+<title>Multi Downloader — Pro</title>
+<link rel="icon" href="Etc/download.png"><link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
-
 <body>
- <div class='white pad-10 shadow bg-red' style='display: flex;align-items: center;margin-bottom: 5px;'>
-   <span class='josefin-font f-20' style='flex: 1;margin-left: 3px;margin-top: 2px;'>Multi Downloder</span>
-   <a href="https://kaviyarasan-1997.github.io/Portfolios/" target="_blank" style="text-decoration: none;margin-right: 5px"><img style="height: 36px;width: 36px;border-radius: 50%;border: 2px solid #fff;" src="Etc/kavin.jpg"/></a>
-   <a href="main.html" target="_blank" style="text-decoration: none;margin-right: 5px"><img style="height: 36px;width: 36px;border-radius: 50%;border: 2px solid #fff;" src="Etc/download.png"/></a>
-  </div>
- <div id='cont'>
-  <div class='pad-15 alert-red'>
-   <i class='fa-brands f-20 fa-youtube'></i><b class='f-20 centre margin-5 black josefin-font'> Youtube Videos Downloader</b><br />
-   <input class='pad-10 input-red josefin-font f-16 black mb5' id='ytl' placeholder='Enter youtube video url...' style='width: 92%;' type='text' /><br />
-   <button class='bg-red btn margin-5 white shadow josefin-font pad-10 f-16 radius-5 active' id='ytb' onclick='utub()'>Download<i class='fa-solid fa-down-long' style='margin-left:4px;font-size:16px'></i></button>
-  </div><br /><br />
-  <div class='pad-15 alert-blue'>
-   <i class='fa-brands f-20 fa-instagram'></i>
-   <b class='f-20 centre margin-5 black josefin-font'>Instagram Videos Downloader</b><br />
-   <input class='pad-10 input-blue josefin-font f-16 black mb5' id='itl' placeholder='Enter instagram link... [reels, posts, videos, igtv]' style='width: 92%;' type='text' /><br />
-   <button class='bg-blue btn margin-5 white shadow josefin-font pad-10 f-16 radius-5 active' id='ytb' onclick='insta()'>Download<i class='fa-solid fa-down-long' style='margin-left:4px;font-size:16px'></i></button>
-  </div><br /><br />
-  <div class='pad-15 alert-blue'>
-   <i class='fa-brands f-20 fa-facebook'></i>
-   <b class='f-20 centre margin-5 black josefin-font'>Facebook Videos Downloader</b><br />
-   <input class='pad-10 input-blue josefin-font f-16 black mb5' id='ftl' placeholder='Enter facebook link...' style='width: 92%;' type='text' /><br />
-   <button class='bg-blue btn margin-5 white shadow josefin-font pad-10 f-16 radius-5 active' id='ftb' onclick='fcbk()'>Download<i class='fa-solid fa-down-long' style='margin-left:4px;font-size:16px'></i></button>
-  </div>
- </div>
- <div class='no-items section' id='required'></div>
- <script>
-  const options = {
-  	method: 'GET',
-  	headers: {
-  		'X-RapidAPI-Key': '3a6008168fmshc89e2b9e019262ap1db9f8jsne1aad62d8bff',
-  		'X-RapidAPI-Host': 'yt-api.p.rapidapi.com'
-  	}
-  };
-  
-  function utub() {
-    var url = document.getElementById("ytl").value.trim();
-    var id, i, usp;
-    var loader = as.loader();
-    loader.show();
-    try {
-  i = new URL("/", url);
-  usp = new URLSearchParams(url);
-  }
-    catch(err) {
-   loader.hide();
-      as.alert({
-       icon: true,
-       title: "Error",
-       text: "Please enter valid youtube video/shorts url."
-      });
-    }
-    if(usp.has("https://m.youtube.com/watch?v") || usp.has("https://www.youtube.com/watch?v")){
-    if(usp.has("https://m.youtube.com/watch?v")){
-   id = usp.get("https://m.youtube.com/watch?v");
-    }else{
-   id = usp.get("https://www.youtube.com/watch?v");
-    }
-  }else if(i.origin == "https://youtu.be"){
-   id = url.slice(17);
-  }else if(url.slice(19,27) == "/shorts/" || url.slice(21,29) == "/shorts/" || url.slice(23,31) == "/shorts/"){
-    if(url.slice(19,27) == "/shorts/"){
-   id = url.slice(27,38);
-    }else if(url.slice(21,29) == "/shorts/"){
-   id = url.slice(29,40);
-    }else{
-  id = url.slice(31,42);
-    }
-  }else{}
-    
-    var dwns = [];
-  fetch('https://yt-api.p.rapidapi.com/dl?id='+id, options)
-  	.then(response => response.json())
-  	.then(x => {
-  	  var fs = x.formats;
-  	  for(var i = 0;i < fs.length;i++){
-  	     var f = fs[i];
-        var dwn = {
-          html: f.qualityLabel+".mp4",
-          close: false,
-          click: function(){
-           window.open(f.url);
-          }
-        }
-       dwns.push(dwn);
-  }
-     var afs = x.adaptiveFormats;
-  	  for(var i = 0;i < afs.length;i++){
-  	     var af = afs[i];
-  if(i != 0 && afs[i-1].quality != af.quality){
-        var dwna = {
-          html: af.quality+".mp3",
-          close: false,
-          click: function(){
-           window.open(af.url);
-          }
-        }
-        dwns.push(dwna);
-      }else{i++;}
-  	  }
-    loader.hide();
-     as.popup({
-       title: x.title,
-       titleSize: 20,
-       image: x.thumbnail[3].url,
-       imageHeight: 210,
-       imageWidth: 280,
-       closeIcon: true,
-       closeBtn: false,
-       buttons: dwns
-      });
-  	})
-  	.catch(err => {
-      loader.hide();
-      as.alert({
-       icon: true,
-       title: "Error",
-       text: "Please enter valid youtube video/shorts url."
-      });
-    });
-  }
- </script>
- <script>
-  const optionsi = {
-  	method: 'GET',
-  	headers: {
-  		'X-RapidAPI-Key': '3a6008168fmshc89e2b9e019262ap1db9f8jsne1aad62d8bff',
-  		'X-RapidAPI-Host': 'instagram-story-downloader-media-downloader.p.rapidapi.com'
-  	}
-  };
-    
-  function insmd(m,x){
-    as.popup({
-  	     text: "Title: "+x.title,
-  	     textSize: 18,
-  	     closeIcon: true,
-  	     closeBtn: false,
-  	     buttons: [
-  	         {
-  	         html: "Download "+m,
-  	         click: function(){
-  	             window.open(x.media)
-  	         },
-  	         close: false
-  	         }
-  	     ]
-  	   });
-  }
-    
-  function insta(){
-    var loader = as.loader();
-    loader.show();
-    var iuid = document.getElementById("itl").value.trim();
-    fetch('https://instagram-story-downloader-media-downloader.p.rapidapi.com/index?url='+iuid, optionsi)
-  	.then(response => response.json())
-  	.then(x => {
-  	   var t = x.Type;
-         loader.hide();
-  	   var m;
-  	   if(t == "Post-Image"){
-  	     m = "Picture";
-  	     insmd(m,x);
-  	   }else if(t == "Post-Video"){
-  	     m = "Video";
-  	     insmd(m,x);
-  	   }else if(t == "Carousel"){
-  	     var ms = x.media;
-  	     var ibtn = [];
-  	     ms.forEach(m => {
-  	       var io = ms.indexOf(m)+1;
-  	       var ib = {
-  	         html: "Download Post "+io,
-  	         close: false,
-  	         click: function(){
-  	           window.open(m);
-  	         }
-  	       }
-  	       ibtn.push(ib);
-  	     });
-  	     as.popup({
-  	     text: "Title: "+x.title,
-  	     textSize: 18,
-  	     closeIcon: true,
-  	     closeBtn: false,
-  	     buttons: ibtn
-  	   })
-  	   }else{}
-  	})
-  	.catch(err => {
-         loader.hide();
-         as.alert({
-          title: "Error",
-          text: "Please enter valid instagram url",
-          icon: true
-         });
-       });
-  }
- </script>
- <script>
-  function fcbk(){
-  var l = as.loader();
-  l.show();
-  var tet = document.getElementById("ftl").value;
-  const fop = {
-  	method: 'GET',
-  	headers: {
-  		'X-RapidAPI-Key': '3a6008168fmshc89e2b9e019262ap1db9f8jsne1aad62d8bff',
-  		'X-RapidAPI-Host': 'facebook-reel-and-video-downloader.p.rapidapi.com'
-  	}
-  };
-  
-  fetch('https://facebook-reel-and-video-downloader.p.rapidapi.com/app/main.php?url='+tet, fop)
-  	.then(response => response.json())
-  	.then(x => {
-      var ls = x.links;
-      var btns = [];
-      for (const [lt, ll] of Object.entries(ls)) {
-        var btn = {
-          html: lt,
-          close: false,
-          click: function(){
-           window.open(ll);
-         }
-        }
-        btns.push(btn);
-      };
-      as.popup({
-       image: x.thumbnail,
-       buttons: btns,
-       closeIcon: true,
-       closeBtn: false,
-       imageHeight: 210,
-       imageWidth: 280
-      });
-  l.hide();
-     })
-  	.catch(err => {
-       l.hide();
-       as.alert({
-         title: "Error",
-         text: "Please enter valid facebook video/reel url",
-         icon: true
-       });
-     });
-  }
- </script>
- <script>
-  function abt(){
-    as.popup({
-    title:"infolite",
-    closeBtn: false,
-     icon:"kavin.jpg",
-    closeIcon: true
-  });
-  }
-  as_share.init();
- </script>
- <!--Il est de votre ressort d\x27informer les visiteurs \xe0 propos des cookies utilis\xe9s et des donn\xe9es collect\xe9es sur votre blog. Blogger met \xe0 votre disposition une notification standard que vous pouvez personnaliser, remplacer ou afficher telle quelle sur votre blog. Rendez-vous sur http://www.blogger.com/go/cookiechoices pour obtenir de plus amples informations.-->
- <script defer='' src='/js/cookienotice.js'></script>
- <script>
-  document.addEventListener('DOMContentLoaded', function(event) {
-    window.cookieChoices && cookieChoices.showCookieConsentBar && cookieChoices.showCookieConsentBar(
-        (window.cookieOptions && cookieOptions.msg) || 'Ce site utilise des cookies provenant de Google pour fournir ses services et analyser le trafic. Votre adresse\xa0IP et votre user-agent, ainsi que des statistiques relatives aux performances et \xe0 la s\xe9curit\xe9, sont transmis \xe0 Google afin d\x27assurer un service de qualit\xe9, de g\xe9n\xe9rer des statistiques d\x27utilisation, et de d\xe9tecter et de r\xe9soudre les probl\xe8mes d\x27abus.',
-        (window.cookieOptions && cookieOptions.close) || 'OK',
-        (window.cookieOptions && cookieOptions.learn) || 'En savoir plus',
-        (window.cookieOptions && cookieOptions.link) || 'https://www.blogger.com/go/blogspot-cookies');
-  });
- ...
- 
-  <!-- Footer -->     
-  <footer>
-   DEVELOPER BY: KAVIYARASAN 
-  </footer> 
-</body>
+<header class="topbar"><nav class="nav"><div class="brand"><span class="brand-badge"><i class="fa-solid fa-bolt"></i></span>Multi Downloader</div><div class="nav-spacer"></div><button class="icon-btn" onclick="sharePage()" aria-label="Share"><i class="fa-solid fa-share-nodes"></i></button></nav></header>
+<main class="container">
+<section class="hero"><h1>Download. <span>Watch. Save.</span></h1><p>One clean page for YouTube, Instagram, Facebook and X. Search YouTube videos, watch them inside the app, and get available download formats.</p></section>
+<div class="tabs">
+<button class="tab active" data-tab="youtube"><i class="fa-brands fa-youtube"></i>YouTube</button>
+<button class="tab" data-tab="instagram"><i class="fa-brands fa-instagram"></i>Instagram</button>
+<button class="tab" data-tab="facebook"><i class="fa-brands fa-facebook"></i>Facebook</button>
+<button class="tab" data-tab="x"><i class="fa-brands fa-x-twitter"></i>X / Twitter</button>
+</div>
 
-</html>
+<section id="youtube" class="panel active">
+<div class="searchbox"><input id="ytSearch" type="search" placeholder="Search YouTube videos..." autocomplete="off"><button class="btn" onclick="searchYT()"><i class="fa-solid fa-magnifying-glass"></i>&nbsp; Search</button></div>
+<div class="hint">Search YouTube → tap ▶ to watch → Download to choose available formats.</div>
+<div class="searchbox secondary"><input id="ytUrl" type="url" placeholder="Or paste a YouTube video / Shorts URL"><button class="btn blue" onclick="downloadYTUrl()">Get Downloads</button></div>
+<div id="ytLoader" class="loader"><div class="spinner"></div><span id="ytLoaderText">Loading YouTube…</span></div>
+<div id="ytTrend" class="results"></div><div id="ytResults" class="results"></div>
+</section>
+
+<section id="instagram" class="panel">
+<div class="searchbox"><input id="igUrl" placeholder="Paste Instagram post / reel URL"><button class="btn blue" onclick="downloadIG()">Download</button></div><div class="hint">Public posts/reels only. Login-required or private media may not work.</div>
+<div id="igLoader" class="loader"><div class="spinner"></div>Fetching media…</div><div id="igResult" class="results"></div>
+</section>
+
+<section id="facebook" class="panel">
+<div class="searchbox"><input id="fbUrl" placeholder="Paste Facebook video / reel URL"><button class="btn blue" onclick="downloadFB()">Download</button></div><div class="hint">Public Facebook videos/reels only.</div>
+<div id="fbLoader" class="loader"><div class="spinner"></div>Fetching media…</div><div id="fbResult" class="results"></div>
+</section>
+
+<section id="x" class="panel">
+<div class="searchbox"><input id="xUrl" placeholder="Paste X / Twitter video URL"><button class="btn green" onclick="downloadX()">Get media</button></div><div class="hint">Uses a public media resolver. Availability can vary by source and region.</div>
+<div id="xLoader" class="loader"><div class="spinner"></div>Fetching media…</div><div id="xResult" class="results"></div>
+</section>
+</main>
+<footer class="footer">Multi Downloader Pro • Personal images removed • Built as a single-page mobile-first interface</footer>
+
+<div id="modal" class="modal" onclick="if(event.target===this)closePlayer()"><div class="modal-box"><div class="modal-head"><b id="modalTitle">YouTube Player</b><button class="close" onclick="closePlayer()">&times;</button></div><div class="player" id="player"></div></div></div>
+<div id="toast" class="toast"></div>
+<script>
+const RAPID_KEY='3a6008168fmshc89e2b9e019262ap1db9f8jsne1aad62d8bff';
+const ytHeaders={'X-RapidAPI-Key':RAPID_KEY,'X-RapidAPI-Host':'yt-api.p.rapidapi.com'};
+const igHeaders={'X-RapidAPI-Key':RAPID_KEY,'X-RapidAPI-Host':'instagram-story-downloader-media-downloader.p.rapidapi.com'};
+const fbHeaders={'X-RapidAPI-Key':RAPID_KEY,'X-RapidAPI-Host':'facebook-reel-and-video-downloader.p.rapidapi.com'};
+
+const $=id=>document.getElementById(id);
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));b.classList.add('active');$(b.dataset.tab).classList.add('active')});
+function showLoader(id,v=true,text){$(id).classList.toggle('show',v);if(text&&id==='ytLoader')$('ytLoaderText').textContent=text}
+function toast(t){const e=$('toast');e.textContent=t;e.classList.add('show');clearTimeout(window.__toast);window.__toast=setTimeout(()=>e.classList.remove('show'),2800)}
+function safe(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]))}
+function attr(s){return safe(s).replace(/`/g,'&#096;')}
+function getThumb(v){return v?.thumbnail?.[0]?.url||v?.thumbnail?.[1]?.url||v?.thumbnail?.[2]?.url||`https://i.ytimg.com/vi/${encodeURIComponent(v?.videoId||'')}/hqdefault.jpg`}
+function openPlayer(id,title){
+  if(!id)return;
+  $('modalTitle').textContent=title||'YouTube Player';
+  $('player').innerHTML=`<iframe src="https://www.youtube.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0&playsinline=1" title="YouTube video player" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+  $('modal').classList.add('show');
+}
+function closePlayer(){$('modal').classList.remove('show');$('player').innerHTML=''}
+function apiError(r,x){return !r.ok || x?.error || x?.message || x?.status==='error'}
+
+function makeYTCard(v){
+  const article=document.createElement('article');article.className='video-card';
+  const thumb=document.createElement('div');thumb.className='thumb';
+  const img=document.createElement('img');img.loading='lazy';img.src=getThumb(v);img.alt='';img.onerror=()=>{img.src=`https://i.ytimg.com/vi/${encodeURIComponent(v.videoId)}/hqdefault.jpg`};
+  const play=document.createElement('button');play.className='play';play.type='button';play.innerHTML='<i class="fa-solid fa-play"></i>';play.title='Watch video';play.onclick=()=>openPlayer(v.videoId,v.title);
+  thumb.append(img,play);
+  const meta=document.createElement('div');meta.className='meta';
+  const title=document.createElement('div');title.className='title';title.textContent=v.title||'YouTube video';
+  const small=document.createElement('div');small.className='small';small.textContent=v.channelTitle||v.author||v.channelName||'YouTube';
+  const actions=document.createElement('div');actions.className='actions';
+  const dl=document.createElement('button');dl.className='btn';dl.type='button';dl.textContent='Download';dl.onclick=()=>ytFormats(v.videoId);
+  const watch=document.createElement('button');watch.className='btn blue';watch.type='button';watch.textContent='Watch';watch.onclick=()=>openPlayer(v.videoId,v.title);
+  actions.append(dl,watch);meta.append(title,small,actions);article.append(thumb,meta);return article;
+}
+
+async function ytFetch(url){
+  const r=await fetch(url,{method:'GET',headers:ytHeaders,cache:'no-store'});
+  let x=null;try{x=await r.json()}catch(e){throw new Error('Invalid API response')}
+  if(apiError(r,x))throw new Error(x?.message||x?.error||`API error ${r.status}`);
+  return x;
+}
+
+async function searchYT(){
+  const q=$('ytSearch').value.trim();if(!q)return toast('Enter a YouTube search term');
+  showLoader('ytLoader',true,'Searching YouTube…');$('ytResults').innerHTML='';
+  try{
+    const x=await ytFetch('https://yt-api.p.rapidapi.com/search?type=video&query='+encodeURIComponent(q));
+    const vs=Array.isArray(x.data)?x.data.filter(v=>v&&v.videoId):[];
+    if(!vs.length){$('ytResults').innerHTML='<div class="empty" style="grid-column:1/-1">No YouTube videos found. Try another search.</div>';return}
+    const frag=document.createDocumentFragment();vs.slice(0,18).forEach(v=>frag.appendChild(makeYTCard(v)));$('ytResults').appendChild(frag);
+  }catch(e){console.error('YouTube search:',e);toast('YouTube search failed. Please try again.');$('ytResults').innerHTML='<div class="empty" style="grid-column:1/-1">YouTube search could not be loaded. Check your RapidAPI subscription/key and try again.</div>'}
+  finally{showLoader('ytLoader',false)}
+}
+
+async function loadTrending(){
+  showLoader('ytLoader',true,'Loading YouTube videos…');
+  try{
+    const x=await ytFetch('https://yt-api.p.rapidapi.com/trending?geo=IN&lang=en');
+    const vs=Array.isArray(x.data)?x.data.filter(v=>v&&v.videoId):[];
+    const box=$('ytTrend');box.innerHTML='';
+    if(vs.length){const frag=document.createDocumentFragment();vs.slice(0,12).forEach(v=>frag.appendChild(makeYTCard(v)));box.appendChild(frag)}
+  }catch(e){console.warn('Trending unavailable:',e)}finally{showLoader('ytLoader',false)}
+}
+
+function addFormatButtons(x,box){
+  const title=document.createElement('div');title.className='empty';title.style.gridColumn='1/-1';
+  const heading=document.createElement('b');heading.textContent=x.title||'Available YouTube formats';title.appendChild(heading);
+  const actions=document.createElement('div');actions.className='actions';actions.style.flexWrap='wrap';
+  const seen=new Set();
+  const add=(label,url)=>{if(!url||seen.has(url))return;seen.add(url);const b=document.createElement('button');b.className='btn';b.type='button';b.textContent=label;b.onclick=()=>window.open(url,'_blank','noopener,noreferrer');actions.appendChild(b)};
+  (Array.isArray(x.formats)?x.formats:[]).forEach(f=>add((f.qualityLabel||f.quality||'Video')+' MP4',f.url));
+  const audio=(Array.isArray(x.adaptiveFormats)?x.adaptiveFormats:[]).filter(f=>f?.url && (f.mimeType||'').includes('audio'));
+  audio.slice(0,5).forEach(f=>add((f.audioQuality||f.quality||'Audio')+' Audio',f.url));
+  title.appendChild(actions);box.prepend(title);return seen.size;
+}
+async function ytFormats(id){
+  if(!id)return;
+  showLoader('ytLoader',true,'Getting download formats…');
+  try{const x=await ytFetch('https://yt-api.p.rapidapi.com/dl?id='+encodeURIComponent(id));const n=addFormatButtons(x,$('ytResults'));if(!n)throw new Error('No formats');toast('Choose a format to open/download');window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});}
+  catch(e){console.error('YouTube formats:',e);toast('Download formats unavailable for this video.');}
+  finally{showLoader('ytLoader',false)}
+}
+function extractYTId(raw){
+  try{const u=new URL(raw);if(u.hostname.includes('youtu.be'))return u.pathname.split('/').filter(Boolean)[0]||'';if(u.hostname.includes('youtube.com')){if(u.pathname==='/watch')return u.searchParams.get('v')||'';if(u.pathname.startsWith('/shorts/'))return u.pathname.split('/')[2]||'';if(u.pathname.startsWith('/embed/'))return u.pathname.split('/')[2]||''}}catch(e){}
+  return '';
+}
+async function downloadYTUrl(){const raw=$('ytUrl').value.trim();const id=extractYTId(raw);if(!id)return toast('Enter a valid YouTube video or Shorts URL');await ytFormats(id)}
+
+async function downloadIG(){const u=$('igUrl').value.trim();if(!u)return toast('Paste an Instagram URL');showLoader('igLoader');$('igResult').innerHTML='';try{const r=await fetch('https://instagram-story-downloader-media-downloader.p.rapidapi.com/index?url='+encodeURIComponent(u),{headers:igHeaders});const x=await r.json();if(x.media){const ms=Array.isArray(x.media)?x.media:[x.media];$('igResult').innerHTML=ms.map((m,i)=>card('Instagram media '+(i+1),m)).join('')}else if(x.url||x.video||x.image){$('igResult').innerHTML=card('Instagram media',x.url||x.video||x.image)}else throw Error()}catch(e){toast('Instagram media unavailable.')}finally{showLoader('igLoader',false)}}
+async function downloadFB(){const u=$('fbUrl').value.trim();if(!u)return toast('Paste a Facebook URL');showLoader('fbLoader');$('fbResult').innerHTML='';try{const r=await fetch('https://facebook-reel-and-video-downloader.p.rapidapi.com/app/main.php?url='+encodeURIComponent(u),{headers:fbHeaders});const x=await r.json();const links=x.links||{};const entries=Object.entries(links);if(!entries.length)throw Error();$('fbResult').innerHTML=entries.map(([k,v])=>card('Facebook '+k,v,x.thumbnail)).join('')}catch(e){toast('Facebook media unavailable.')}finally{showLoader('fbLoader',false)}}
+async function downloadX(){const u=$('xUrl').value.trim();if(!u)return toast('Paste an X/Twitter URL');showLoader('xLoader');$('xResult').innerHTML='';try{const r=await fetch('https://api.cobalt.tools/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({url:u,downloadMode:'auto'})});const x=await r.json();const url=x.url||x.audio;if(!url)throw Error();$('xResult').innerHTML=card('X / Twitter media',url);toast('Media ready')}catch(e){toast('X media resolver unavailable right now.')}finally{showLoader('xLoader',false)}}
+function card(title,url,img){return `<article class="video-card"><div class="thumb">${img?`<img loading="lazy" src="${safe(img)}" alt="">`:'<div style="height:100%;display:grid;place-items:center;color:#657080"><i class="fa-solid fa-download" style="font-size:44px"></i></div>'}</div><div class="meta"><div class="title">${safe(title)}</div><div class="actions"><button class="btn" onclick="window.open('${attr(url)}','_blank','noopener,noreferrer')">Download</button></div></div></article>`}
+function sharePage(){if(navigator.share)navigator.share({title:document.title,url:location.href});else{navigator.clipboard?.writeText(location.href);toast('Page link copied')}}
+$('ytSearch').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();searchYT()}});$('ytUrl').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();downloadYTUrl()}});
+$('modal').addEventListener('click',e=>{if(e.target===$('modal'))closePlayer()});
+loadTrending();
+</script>
+</body></html>
